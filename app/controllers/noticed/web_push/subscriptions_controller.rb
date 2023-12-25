@@ -11,5 +11,5 @@ class Noticed::WebPush::SubscriptionsController < ApplicationController
 end
 
 # TODO
-- replace AppController
-- replace current_user
+# - replace AppController
+# - replace current_user
