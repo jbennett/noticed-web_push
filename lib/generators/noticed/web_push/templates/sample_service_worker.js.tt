@@ -1,7 +1,9 @@
+ENGINE_MOUNT_PATH = "/web_push"
+
 self.addEventListener('push', event => {
     const data = event.data?.json() || {}
     console.log("Received push", data)
-    
+
     event.waitUntil(
         self.registration.showNotification(data.title, {
             body: data.body,
@@ -21,7 +23,7 @@ self.addEventListener("notificationclick", event => {
 
 self.addEventListener('pushsubscriptionchange', async (event) => {
     const subscription = await self.registration.pushManager.getSubscription()
-    await fetch("/web_push_subscriptions", {
+    await fetch(`${ENGINE_MOUNT_PATH}/subscriptions`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,0 +1,8 @@
+{
+  "name": "Full Name",
+  "short_name": "Short Name",
+  "start_url": "/sign_in",
+  "display": "fullscreen",
+  "icons": [
+  ]
+}

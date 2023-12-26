@@ -1,3 +1,6 @@
+ENGINE_MOUNT_PATH = "/web_push"
+SERVICE_WORKER_PATH = "/sample_service_worker.js"
+
 document.addEventListener("turbo:load", () => {
     switch (Notification.permission) {
         case "granted":
@@ -34,10 +37,12 @@ function promptForNotifications() {
 async function setupSubscription() {
     if (Notification.permission !== "granted") return
     if (!navigator.serviceWorker) return
-    
-    let vapid = new Uint8Array(JSON.parse(document.querySelector("meta[name=web_push_public]")?.content))
 
-    await navigator.serviceWorker.register("/service_worker.js")
+    let key_bytes = document.querySelector("meta[name=web_push_public]")?.content
+    console.debugger
+    let vapid = new Uint8Array(JSON.parse(key_bytes))
+
+    await navigator.serviceWorker.register(SERVICE_WORKER_PATH)
     const registration = await navigator.serviceWorker.ready
     await registration.pushManager.subscribe({
         userVisibleOnly: true,
@@ -55,7 +60,7 @@ async function saveSubscription() {
     const subscription = await registration.pushManager.getSubscription()
     if (!subscription) return
 
-    await fetch("/web_push_subscriptions", {
+    await fetch(`${ENGINE_MOUNT_PATH}/subscriptions`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
