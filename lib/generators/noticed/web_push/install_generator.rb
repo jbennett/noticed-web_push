@@ -40,7 +40,7 @@ module Noticed
           inject_into_file "app/models/user.rb", after: "has_many :notifications, as: :recipient, dependent: :destroy\n" do
             "\thas_many :web_push_subscriptions, class_name: \"Noticed::WebPush::Subscription\", dependent: :destroy\n"
           end
-          route "mount_web_push \"/web_push\", :service_worker, :webmanifest\n"
+          route "mount_web_push\n"
 
           inject_into_file "app/views/layouts/application.html.erb", before: "</head>" do
             <<~INIT
