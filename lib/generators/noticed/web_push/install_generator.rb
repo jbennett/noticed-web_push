@@ -45,7 +45,7 @@ module Noticed
           inject_into_file "app/views/layouts/application.html.erb", before: "</head>" do
             <<~INIT
 
-            \t\t<%= link_tag rel: :manifest, href: "/app.webmanifest" %>
+            \t\t<%= tag.link rel: :manifest, href: "/app.webmanifest" %>
             \t\t<%= web_push_public_key_meta_tag %>
             INIT
           end
