@@ -1,0 +1,18 @@
+{
+  "name": "OVERRIDE VIEW IN APPLICATION",
+  "short_name": "SHORT NAME",
+  "start_url": "/sign_in",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "<%= j image_path("icon-192.png") %>",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "<%= j image_path("icon-512.png") %>",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -32,8 +32,7 @@ module Noticed
         end
 
         def create_webmanifest
-          template "app.webmanifest.tt", "app/assets/webmanifests/app.webmanifest"
-          append_to_file "app/assets/config/manifest.js", "//= link_tree ../webmanifests"
+          template "app.webmanifest.erb.tt", "app/noticed/web_push/pwa/app.webmanifest.erb"
         end
 
         def update_rubies
