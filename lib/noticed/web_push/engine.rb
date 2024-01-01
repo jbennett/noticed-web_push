@@ -10,6 +10,10 @@ module Noticed
       ActiveSupport.on_load(:action_view) do
         include Noticed::WebPush::ApplicationHelper
       end
+
+      config.after_initialize do
+        Mime::Type.register "application/manifest+json", :webmanifest
+      end
     end
   end
 end
