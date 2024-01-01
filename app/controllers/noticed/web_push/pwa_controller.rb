@@ -6,7 +6,7 @@ class Noticed::WebPush::PwaController < ApplicationController
   end
 
   def app_webmanifest
-    send_file get_full_path_to_asset("app.webmanifest"), disposition: :inline
+    render :app
   end
 
   private
