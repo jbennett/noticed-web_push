@@ -2,9 +2,7 @@
 
 ## 🎉 Web Push Notifications for your Ruby on Rails app.
 
-## 🎬 Screencast
-
-**todo**
+[🎬 Screencast](https://www.youtube.com/watch?v=-9KWx7Pj5AM)
 
 ## 🚀 Installation
 
