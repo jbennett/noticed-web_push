@@ -6,13 +6,14 @@ export function start(options) {
   SERVICE_WORKER_PATH = options.server_worker_path
 
   document.addEventListener("turbo:load", () => {
-    switch (Notification.permission) {
+    switch (window.Notification?.permission) {
+        case null:
+            return // not supported
         case "granted":
             saveSubscription()
             return
         case "denied":
-            // do nothing?
-            return
+            return // do nothing?
         default:
             promptForNotifications()
     }
@@ -40,7 +41,7 @@ function promptForNotifications() {
 }
 
 async function setupSubscription() {
-    if (Notification.permission !== "granted") return
+    if (window.Notification?.permission !== "granted") return
     if (!navigator.serviceWorker) return
 
     let key_bytes = document.querySelector("meta[name=web_push_public]")?.content
@@ -57,7 +58,7 @@ async function setupSubscription() {
 }
 
 async function saveSubscription() {
-    if (Notification.permission !== "granted") return
+    if (window.Notification?.permission !== "granted") return
     if (!navigator.serviceWorker) return
 
     const registration = await navigator.serviceWorker.ready
